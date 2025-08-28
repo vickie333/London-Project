@@ -1,0 +1,32 @@
+<odoo>
+  <record id="view_project_employees_xlsx_wizard" model="ir.ui.view">
+    <field name="name">project.employees.xlsx.wizard.form</field>
+    <field name="model">project.employees.xlsx.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Exportar Empleados a Excel" width="600">
+        <sheet>
+          <group>
+            <field name="project_ids" widget="many2many_tags" />
+          </group>
+          <group>
+            <field name="file_data" filename="file_name" readonly="1"/>
+          </group>
+          <footer>
+            <button string="Generar" type="object" name="action_generate_xlsx" class="btn-primary"/>
+            <button string="Cerrar" class="btn-secondary" special="cancel"/>
+          </footer>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_project_employees_xlsx_wizard" model="ir.actions.act_window">
+    <field name="name">Exportar Proyectos (XLSX)</field>
+    <field name="res_model">project.employees.xlsx.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_project_employees_xlsx_wizard"/>
+    <field name="target">new</field>
+  </record>
+
+
+</odoo>

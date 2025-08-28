@@ -1,0 +1,115 @@
+<odoo>
+
+    <record id="view_london_project_list_header" model="ir.ui.view">
+        <field name="name">london.project.tree.with_button</field>
+        <field name="model">london.project</field>
+        <field name="inherit_id" ref="london_project.view_london_project_list"/>
+        <field name="arch" type="xml">
+          <xpath expr="//list" position="inside">
+            <header>
+              <button name="%(action_project_employees_xlsx_wizard)d"
+                      type="action"
+                      string="Exportar Proyectos a Excel"
+                      class="oe_highlight"
+                      display="always"/>
+            </header>
+          </xpath>
+        </field>
+      </record>
+    <record id="view_london_project_form" model="ir.ui.view">
+        <field name="name">london.project.form</field>
+        <field name="model">london.project</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="manager_id" domain="[('role', '=', 'pm')]"/>
+                        </group>
+                        <group>
+                            <field name="client_id"/>
+                            <field name="client_is_company"/>
+                            <field name="client_object" invisible="not client_is_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                       <page string="Empleados">
+                          <field name="assign_dev_ids"
+                                widget="many2many_tags"
+                                domain="[('role','=','dev'),
+                                          ('project_manager_id','=', manager_id),
+                                          ('project_id','in', [False, id])]"
+                                context="{'default_project_manager_id': manager_id}"/>
+
+                          <field name="employee_ids" nolabel="1" readonly="1">
+                              <list>
+                                  <field name="name"/>
+                              </list>
+                          </field>
+                      </page>
+                      <page string="Tareas">
+                          <field name="task_ids" widget="one2many_list" nolabel="1">
+                            <list editable="bottom">
+                              <field name="name"/>
+                              <field name="assigned_to_id"
+                                    options="{'no_create': True}"
+                                    domain="[
+                                          ('role','=','dev'),
+                                          ('id','in', parent.employee_ids)
+                                        ]"/>
+                            </list>
+                          </field>
+                      </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+      <record id="view_london_project_list" model="ir.ui.view">
+        <field name="name">london.project.list</field>
+        <field name="model">london.project</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="manager_id"/>
+                <field name="client_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_london_project_search" model="ir.ui.view">
+    <field name="name">london.project.search</field>
+    <field name="model">london.project</field>
+    <field name="arch" type="xml">
+        <search>
+            <field name="name"/>
+            <field name="manager_id"/>
+            <field name="client_id"/>
+            <filter string="Proyectos Activos"
+                    name="active_projects"
+                    domain="[('date_start', '&lt;=', context_today()), ('date_end', '&gt;=', context_today())]"/>
+            <separator/>
+            <group expand="0" string="Agrupar por">
+                <filter string="Jefe de Proyecto" name="group_by_manager" context="{'group_by': 'manager_id'}"/>
+                <filter string="Cliente" name="group_by_client" context="{'group_by': 'client_id'}"/>
+            </group>
+        </search>
+    </field>
+</record>
+
+
+
+    <record id="action_london_project" model="ir.actions.act_window">
+    <field name="name">Proyectos Londres</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">london.project</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+</odoo>
