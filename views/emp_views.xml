@@ -43,6 +43,7 @@
             <list string="Empleado">
                 <field name="name"/>
                 <field name="role"/>
+                <field name="project_id"/>
             </list>
         </field>
     </record>

@@ -4,3 +4,4 @@ access_employee_london_user,employee.london.user,model_employee_london,base.grou
 access_london_task_user,london.task.user,model_london_task,base.group_user,1,1,1,1
 access_project_employees_xlsx_wizard,access.project.employees.xlsx.wizard,model_project_employees_xlsx_wizard,base.group_user,1,1,1,1
 access_import_employee_wizard,access.import.employee.wizard,model_import_employee_wizard,base.group_user,1,1,1,1
+access_project_date_range_wizard,access.project.date.range.wizard,model_project_date_range_wizard,base.group_user,1,1,1,1

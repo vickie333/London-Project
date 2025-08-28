@@ -10,6 +10,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/wizard_views.xml',
+        'views/project_date_range_wizard.xml',
         'views/project_views.xml',
         'views/import_wizard.xml',
         'views/emp_views.xml',

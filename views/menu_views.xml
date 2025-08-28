@@ -2,4 +2,5 @@
     <menuitem id="menu_root" name="London"/>
     <menuitem id="employee_menu" name="Empleados" parent="menu_root" action="action_hr_employee_london"/>
     <menuitem id="proyect_menu" name="Proyectos" parent="menu_root" action="action_london_project"/>
+    <menuitem id="menu_project_date_range_wizard" name="Proyectos por fecha fin" parent="proyect_menu" action="action_project_date_range_wizard"/>
 </odoo>

@@ -11,6 +11,7 @@ class LondonProject(models.Model):
     client_id = fields.Many2one('res.partner',string="Client", required=True)
     client_is_company = fields.Boolean(related='client_id.is_company',string='Cliente es empresa')
     client_object = fields.Char(string='Objeto social') 
+    description = fields.Text(string="Description")
     date_start = fields.Date()
     date_end = fields.Date()
     manager_id = fields.Many2one('employee.london', string='Project Manager')
