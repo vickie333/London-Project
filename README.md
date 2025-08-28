@@ -29,7 +29,6 @@ Con este módulo podrás:
 - Cada proyecto tiene:
   - **Jefe de proyecto**
   - **Fecha de inicio y fin**
-  - **Descripción general**
   - **Lista de tareas**
   - **Empleados participantes**
 - Cada proyecto está asociado a un **cliente**:
