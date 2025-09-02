@@ -1,6 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_london_project_user,london.project.user,model_london_project,base.group_user,1,1,1,1
-access_employee_london_user,employee.london.user,model_employee_london,base.group_user,1,1,1,1
+access_london_employee_user,london.employee.user,model_london_employee,base.group_user,1,1,1,1
 access_london_task_user,london.task.user,model_london_task,base.group_user,1,1,1,1
 access_project_employees_xlsx_wizard,access.project.employees.xlsx.wizard,model_project_employees_xlsx_wizard,base.group_user,1,1,1,1
 access_import_employee_wizard,access.import.employee.wizard,model_import_employee_wizard,base.group_user,1,1,1,1

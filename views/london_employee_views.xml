@@ -1,0 +1,70 @@
+<odoo>
+    <record id="london_employee_view_form" model="ir.ui.view">
+        <field name="name">london.employee.view.form</field>
+        <field name="model">london.employee</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <form string="Empleado (Proyecto)">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="role"/>
+                            <field name="project_manager_id" domain="[('role', '=', 'pm')]"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="london_employee_view_list" model="ir.ui.view">
+        <field name="name">london.employee.view.list</field>
+        <field name="model">london.employee</field>
+        <field name="arch" type="xml">
+            <list string="Empleado">
+                <header>
+                <button name="%(import_employee_wizard_action)d"
+                        type="action"
+                        string="Importar Excel Empleados"
+                        class="oe_highlight"
+                        display="always"/>
+                </header>
+                <field name="name"/>
+                <field name="role"/>
+                <field name="project_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="london_employee_view_kanban" model="ir.ui.view">
+        <field name="name">london.employee.view.kanban</field>
+        <field name="model">london.employee</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="role" highlight_color="color" class="o_kanban_small_column">
+                <field name="color"/>
+                <field name="assignment_status"/>
+                <progressbar field="assignment_status" colors="{&quot;available&quot;: &quot;success&quot;, &quot;assigned&quot;: &quot;info&quot;, &quot;overloaded&quot;: &quot;danger&quot;}"/>
+                <template>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="{{'oe_kanban_color_' + kanban_getcolor(record.color.raw_value) }} oe_kanban_card oe_kanban_global_click oe_semantic_html_override">
+                            <div class="oe_kanban_details">
+                                <strong><field name="name"/></strong>
+                            </div>
+                            <div class="o_kanban_field">
+                                <span>Asignado a: </span><field name="project_id"/>
+                            </div>
+                        </div>
+                    </t>
+                </template>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="london_employee_action_window" model="ir.actions.act_window">
+        <field name="name">Empleados</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">london.employee</field>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+</odoo>

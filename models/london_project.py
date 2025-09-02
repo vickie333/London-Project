@@ -14,12 +14,12 @@ class LondonProject(models.Model):
     description = fields.Text(string="Description")
     date_start = fields.Date()
     date_end = fields.Date()
-    manager_id = fields.Many2one('employee.london', string='Project Manager')
-    employee_ids = fields.One2many('employee.london', 'project_id', string='Participantes')
+    manager_id = fields.Many2one('london.employee', string='Project Manager')
+    employee_ids = fields.One2many('london.employee', 'project_id', string='Participantes')
     task_ids = fields.One2many('london.task', 'project_id', string='Lista de Tareas')
 
     assign_dev_ids = fields.Many2many(
-        'employee.london',
+        'london.employee',
         string='Equipo (seleccionar devs)',
         compute='_compute_assign_dev_ids',
         inverse='_inverse_assign_dev_ids',

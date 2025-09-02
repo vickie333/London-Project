@@ -9,11 +9,11 @@
     'depends': ['base', 'web'],
     'data': [
         'security/ir.model.access.csv',
-        'views/wizard_views.xml',
-        'views/project_date_range_wizard.xml',
-        'views/project_views.xml',
-        'views/import_wizard.xml',
-        'views/emp_views.xml',
-        'views/menu_views.xml',
+        'wizard/project_employees_xlsx_wizard_views.xml',
+        'wizard/project_date_range_wizard_views.xml',
+        'wizard/import_employee_wizard_views.xml',
+        'views/london_project_views.xml',
+        'views/london_employee_views.xml',
+        'views/london_employee_menu_views.xml',
     ],
 }

@@ -8,7 +8,7 @@ class LondonTask(models.Model):
     name = fields.Char(string='Título', required=True)
     description = fields.Text(string='Descripción')
     project_id = fields.Many2one('london.project', string='Proyecto', required=True)
-    assigned_to_id = fields.Many2one('employee.london', string='Asignado a:')
+    assigned_to_id = fields.Many2one('london.employee', string='Asignado a:')
 
 
     @api.onchange('project_id')
